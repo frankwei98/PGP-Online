@@ -4,5 +4,9 @@
 
 import loadable from '@loadable/component'
 
-export const AboutUs = loadable(() => import('./About'))
-export const Keygen = loadable(() => import('./Keygen'))
+const AboutUs = loadable(() => import('./About'))
+const Keygen = loadable(() => import('./Keygen'))
+const Encrypt = loadable(() => import('./encrypt'))
+const Decrypt = loadable(() => import('./decrypt'))
+
+export { Encrypt, Decrypt, AboutUs, Keygen }

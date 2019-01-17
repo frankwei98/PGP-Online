@@ -1,11 +1,10 @@
-import openpgp from "openpgp";
-
-openpgp.config.compression = openpgp.enums.compression.zlib
+import openpgp, { message, key } from "openpgp";
 
 async function encrypt(pubkey, text) {
+    const publicKeys = (await key.readArmored(pubkey)).keys
     const options = {
-        message: openpgp.message.fromText(text),       // input as Message object
-        publicKey: (await openpgp.key.readArmored(pubkey)).keys, // for encryption
+        message: message.fromText(text),       // input as Message object
+        publicKeys // for encryption
         // privateKey: [privKeyObj]                                 // for signing (optional) TODO
     }
     return openpgp.encrypt(options)

@@ -1,14 +1,5 @@
 import { withReduxDevtools, withLogger } from 'undux'
 
-const listenAndUpdateLocalStorage = (store) =>
-    (name) =>
-        store
-            .on(name)
-            .subscribe(val => {
-                console.log(`The user updated ${name} to`, val)
-                localStorage.setItem(name, val)
-            })
-
 const effects = store => {
     withReduxDevtools(store)
     withLogger(store)
