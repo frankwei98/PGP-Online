@@ -3,9 +3,8 @@ import effects from './effects'
 
 // Declare your store's initial state.
 const initialState = {
-    privateKeyArmored: localStorage.getItem('privateKeyArmored'),
-    publicKeyArmored: localStorage.getItem('publicKeyArmored'),
-    revocationCertificate: localStorage.getItem('revocationCertificate')
+    publicKey: null,
+    privateKey: null
 }
 
 // Create & export a store with an initial value.

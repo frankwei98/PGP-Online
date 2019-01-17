@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import openpgp from "openpgp";
+import openpgp, { key } from "openpgp";
 import { withStore } from "../store";
 import CopyableTextarea from "../components/CopyableTextarea";
 
@@ -20,11 +20,7 @@ class KeyGen extends Component {
 
     componentDidMount() {
         const { store } = this.props
-        const isKeyExist = (
-            !!store.get('privateKeyArmored')
-            && !!store.get('publicKeyArmored')
-            && !!store.get('revocationCertificate')
-        )
+        const isKeyExist = !!store.get('privateKey')
         console.info(`Is Key Exist in the localStorage: ${isKeyExist}`)
         this.setState({ isKeyExist })
     }
@@ -34,24 +30,16 @@ class KeyGen extends Component {
         const { name, email, passphrase } = this.state
         var options = {
             userIds: [{ name, email }], // multiple user IDs
-            numBits: 4096,                                            // RSA key size
+            curve: "p256",           // ECC curve name
+            // numBits: 4096,    // RSA key size
             passphrase       // protects the private key
         };
         const {
             privateKeyArmored,
-            publicKeyArmored,
-            revocationCertificate
         } = await openpgp.generateKey(options)
-        console.info(privateKeyArmored,
-            publicKeyArmored,
-            revocationCertificate)
-        // localStorage.setItem('privateKeyArmored', privateKeyArmored)
-        // localStorage.setItem('publicKeyArmored', publicKeyArmored)
-        // localStorage.setItem('revocationCertificate', revocationCertificate)
         const { store } = this.props
-        store.set('privateKeyArmored')(privateKeyArmored)
-        store.set('publicKeyArmored')(publicKeyArmored)
-        store.set('revocationCertificate')(revocationCertificate)
+        const privateKey = (await key.readArmored(privateKeyArmored)).keys[0]
+        store.set('privateKey')(privateKey)
         this.setState({ isKeyExist: true })
     }
 
@@ -69,30 +57,30 @@ class KeyGen extends Component {
                 <div className="control column">
                     <h2 className="title">Your Public Key</h2>
                     <h2 className="subtitle">It's OK to share your Public Key with anyone who want to send a secret messages.</h2>
-                    <CopyableTextarea name="publicKey" text={store.get('publicKeyArmored')}></CopyableTextarea>
+                    <CopyableTextarea name="publicKey" text={store.get('publicKey').armor()}></CopyableTextarea>
                 </div>
                 <div className="control column">
                     <h2 className="title">Your (Armored) Private Key</h2>
                     <h2 className="subtitle">No one can use your Private Key unless your key-protection passphrase was compromised.</h2>
-                    <CopyableTextarea name="privateKey" text={store.get('privateKeyArmored')}></CopyableTextarea>
+                    <CopyableTextarea name="privateKey" text={store.get('privateKey').armor()}></CopyableTextarea>
                 </div>
             </div>
         )
     }
 
     render() {
-        
+
         return (
             <div className="key-gen">
                 <h1 className="title">密钥管理</h1>
                 {this.warmlyInstruction()}
                 <form>
-                    <input className="input" type="text" placeholder="名字"
+                    <input className="input" type="text" placeholder="名字或昵称，用于辨识密钥身份"
                         onChange={e => this.handleChanges(e, 'name')}></input>
-                    <input className="input" type="email" placeholder="电子邮箱"
+                    <input className="input" type="email" placeholder="与密钥所关联的电子邮箱"
                         autoComplete="username"
                         onChange={e => this.handleChanges(e, 'email')}></input>
-                    <input className="input" type="password" placeholder="密钥保护密码"
+                    <input className="input" type="password" placeholder="密钥保护密码， 可包含多个空格"
                         autoComplete="new-password"
                         onChange={e => this.handleChanges(e, 'passphrase')}></input>
                     <button className="button primary"

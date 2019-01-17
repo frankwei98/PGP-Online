@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { AboutUs, Keygen } from "./page";
+import { key } from "openpgp";
+import { withStore } from "./store";
 // import Keygen from "./components/keygen";
 import './App.css';
 
 class App extends Component {
+  async componentDidMount() {
+    const privateKeyArmored = localStorage.getItem('privateKeyArmored')
+    if (privateKeyArmored) {
+      const privateKey = await key.readArmored(privateKeyArmored)
+      this.props.store.set('privateKey')(privateKey.keys[0])
+    }
+
+  }
+
   Home() {
     return (
       <div className="home">
@@ -13,9 +24,7 @@ class App extends Component {
       </div>
     )
   }
-  componentWillMount() {
-    console.info(AboutUs)
-  }
+
   render() {
     return (
       <Router>
@@ -40,4 +49,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStore(App);

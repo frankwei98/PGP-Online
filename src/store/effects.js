@@ -12,28 +12,12 @@ const listenAndUpdateLocalStorage = (store) =>
 const effects = store => {
     withReduxDevtools(store)
     withLogger(store)
-    const listener = listenAndUpdateLocalStorage(store)
-    listener('privateKeyArmored')
-    listener('publicKeyArmored')
-    listener('revocationCertificate')
-    // store
-    //     .on('privateKeyArmored')
-    //     .subscribe(privateKeyArmored => {
-    //         console.log('The user updated privateKeyArmored to', privateKeyArmored)
-    //         localStorage.setItem('privateKeyArmored', privateKeyArmored)
-    //     })
-    // store
-    //     .on('publicKeyArmored')
-    //     .subscribe(publicKeyArmored => {
-    //         console.log('The user updated publicKeyArmored to', publicKeyArmored)
-    //         localStorage.setItem('publicKeyArmored', publicKeyArmored)
-    //     })
-    // store
-    //     .on('revocationCertificate')
-    //     .subscribe(revocationCertificate => {
-    //         console.log('The user updated revocationCertificate to', revocationCertificate)
-    //         localStorage.setItem('revocationCertificate', revocationCertificate)
-    //     })
+    store.on('privateKey').subscribe(privKey => {
+        localStorage.setItem('privateKeyArmored', privKey.armor())
+        const pubKey = privKey.toPublic()
+        console.info(`PubKey from PrivKey ${JSON.stringify(pubKey)}`)
+        store.set('publicKey')(pubKey)
+    })
     return store
 }
 

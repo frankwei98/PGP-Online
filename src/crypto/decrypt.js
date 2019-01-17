@@ -7,8 +7,8 @@ async function decrypt(privkey, encrypted) {
     await privKeyObj.decrypt(passphrase)
     const options = {
         message: await openpgp.message.readArmored(encrypted),    // parse armored message
-        // publicKeys: (await openpgp.key.readArmored(pubkey)).keys, // for verification (optional) TODO
-        privateKeys: [privKeyObj]                                 // for decryption
+        // publicKey: (await openpgp.key.readArmored(pubkey)).keys, // for verification (optional) TODO
+        privateKey: [privKeyObj]                                 // for decryption
     }
     return openpgp.decrypt(options)
 }
