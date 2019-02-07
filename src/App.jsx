@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { AboutUs, Keygen, Encrypt, Decrypt } from "./page";
+import { AboutUs, KeyManagement, Encrypt, Decrypt } from "./page";
 import { key } from "openpgp";
 import { withStore } from "./store";
-// import Keygen from "./components/keygen";
+// import KeyManagement from "./components/keygen";
 import './App.css';
 
 class App extends Component {
@@ -52,7 +52,7 @@ class App extends Component {
           <Route path="/about" component={AboutUs}></Route>
           <Route path="/encrypt" component={Encrypt}></Route>
           <Route path="/decrypt" component={Decrypt}></Route>
-          <Route path="/key" component={Keygen}></Route>
+          <Route path="/key" component={KeyManagement}></Route>
         </div>
       </Router>
     );
