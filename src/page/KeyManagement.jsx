@@ -22,9 +22,7 @@ function KeyManagement(props) {
             curve: "p256",           // ECC curve name
             passphrase       // protects the private key
         };
-        const {
-            privateKeyArmored,
-        } = await openpgp.generateKey(options)
+        const { privateKeyArmored } = await openpgp.generateKey(options)
         const privateKey = (await key.readArmored(privateKeyArmored)).keys[0]
         store.set('privateKey')(privateKey)
         setIsKeyExist(true)
@@ -36,12 +34,12 @@ function KeyManagement(props) {
             <div className="mykey columns">
                 <div className="control column">
                     <h2 className="title">你的公钥 Public Key</h2>
-                    <h2 className="subtitle">请分享给朋友，让他通过公钥给你发悄悄话</h2>
+                    <div className="notification is-info">请把公钥分享给朋友，让他通过公钥给你发悄悄话</div>
                     <CopyableTextarea name="publicKey" text={store.get('publicKey').armor()}></CopyableTextarea>
                 </div>
                 <div className="control column">
                     <h2 className="title">你的私钥 Private Key</h2>
-                    <h2 className="subtitle">请不要分享私钥给任何人，你的私钥和密码可以解开只属于你的秘密！</h2>
+                    <div className="notification is-danger">请不要分享私钥给任何人<br />你的私钥和密码组合一起，可以解开只属于你的秘密！</div>
                     <CopyableTextarea name="privateKey" text={store.get('privateKey').armor()}></CopyableTextarea>
                 </div>
             </div>
@@ -53,7 +51,7 @@ function KeyManagement(props) {
             <h1 className="title">密钥管理</h1>
             {isKeyExist
                 ?
-                <div className="notification is-primary key-exist">
+                <div className="notification is-danger key-exist">
                     你已经生成了密钥对，需要更换密钥吗？
                 </div>
                 :
