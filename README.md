@@ -1,4 +1,7 @@
 # Pretty Good Privacy Online
+
+> This project is no longer maintained. A new real-time web chatroom project (possibly) coming soon aims to replace it.
+
 Demo: [pgp.frankwei.xyz](https://pgp.frankwei.xyz)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
