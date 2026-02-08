@@ -2,7 +2,7 @@ import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { AboutUs, KeyManagement, Encrypt, Decrypt } from "./page";
 import Loading from "./page/Loading";
-import { key } from "openpgp";
+import * as openpgp from "openpgp";
 import useStore from "./store";
 import './App.css';
 
@@ -29,10 +29,12 @@ const App: React.FC = () => {
     const initKey = async () => {
       const privateKeyArmored = localStorage.getItem('privateKeyArmored')
       if (privateKeyArmored) {
-        // @ts-ignore - openpgp types might need adjustment
-        const privateKey = await key.readArmored(privateKeyArmored)
-        // @ts-ignore - privateKey.keys[0] should match our PGPKey interface
-        setPrivateKey(privateKey.keys[0])
+        try {
+          const privateKey = await openpgp.readPrivateKey({ armoredKey: privateKeyArmored });
+          setPrivateKey(privateKey);
+        } catch (e) {
+          console.error("Failed to load private key", e);
+        }
       }
     };
     initKey();

@@ -149,11 +149,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mattiasbuelens/web-streams-polyfill@0.1.0-alpha.4":
-  version "0.1.0-alpha.4"
-  dependencies:
-    "@types/whatwg-streams" "0.0.5"
-
 "@remix-run/router@1.23.2":
   version "1.23.2"
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.23.2.tgz"
@@ -190,13 +185,6 @@
   dependencies:
     "@babel/types" "^7.28.2"
 
-"@types/bn.js@*":
-  version "5.2.0"
-  resolved "https://registry.npmjs.org/@types/bn.js/-/bn.js-5.2.0.tgz"
-  integrity sha512-DLbJ1BPqxvQhIGbeu8VbUC1DiAiahHtAYvA0ZEAa4P31F7IaArc8z3C3BRQdWX4mtLQuABG4yzp76ZrS02Ui1Q==
-  dependencies:
-    "@types/node" "*"
-
 "@types/clipboard@^2.0.1":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@types/clipboard/-/clipboard-2.0.1.tgz"
@@ -205,19 +193,12 @@
 "@types/estree@1.0.8":
   version "1.0.8"
 
-"@types/node@*", "@types/node@^18.0.0 || >=20.0.0", "@types/node@^25.2.2":
+"@types/node@^18.0.0 || >=20.0.0", "@types/node@^25.2.2":
   version "25.2.2"
   resolved "https://registry.npmjs.org/@types/node/-/node-25.2.2.tgz"
   integrity sha512-BkmoP5/FhRYek5izySdkOneRyXYN35I860MFAGupTdebyE66uZaR+bXLHq8k4DirE5DwQi3NuhvRU1jqTVwUrQ==
   dependencies:
     undici-types "~7.16.0"
-
-"@types/openpgp@^4.4.22":
-  version "4.4.22"
-  resolved "https://registry.npmjs.org/@types/openpgp/-/openpgp-4.4.22.tgz"
-  integrity sha512-afQsbrWITIcSI3OBBJtTA87H5Av2/bjRn6YBHD+abxqJVpD2HRwjP6DL7drboJcuizwcnwnVKSupXYYdImdIoQ==
-  dependencies:
-    "@types/bn.js" "*"
 
 "@types/react-dom@^19.2.3":
   version "19.2.3"
@@ -231,9 +212,6 @@
   dependencies:
     csstype "^3.2.2"
 
-"@types/whatwg-streams@0.0.5":
-  version "0.0.5"
-
 "@vitejs/plugin-react@^4.2.0":
   version "4.7.0"
   dependencies:
@@ -244,33 +222,8 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.17.0"
 
-address-rfc2822@^2.0.3:
-  version "2.0.4"
-  dependencies:
-    email-addresses "^3.0.0"
-
-"asmcrypto.js@github:openpgpjs/asmcrypto#6e4e407":
-  version "2.3.0"
-  resolved "git+ssh://git@github.com/openpgpjs/asmcrypto.git#6e4e407b9b8ae317925a9e677cc7b4de3e447e83"
-
-asn1.js@^5.0.0:
-  version "5.0.1"
-  dependencies:
-    bn.js "^4.0.0"
-    inherits "^2.0.1"
-    minimalistic-assert "^1.0.0"
-
-base64-js@^1.0.2:
-  version "1.3.0"
-
 baseline-browser-mapping@^2.9.0:
   version "2.9.19"
-
-bn.js@^4.0.0, bn.js@^4.11.8, bn.js@^4.4.0:
-  version "4.11.8"
-
-brorand@^1.0.1:
-  version "1.1.0"
 
 browserslist@^4.24.0, "browserslist@>= 4.21.0":
   version "4.28.1"
@@ -281,12 +234,6 @@ browserslist@^4.24.0, "browserslist@>= 4.21.0":
     node-releases "^2.0.27"
     update-browserslist-db "^1.2.0"
 
-buffer@^5.0.8:
-  version "5.2.1"
-  dependencies:
-    base64-js "^1.0.2"
-    ieee754 "^1.1.4"
-
 caniuse-lite@^1.0.30001759:
   version "1.0.30001769"
 
@@ -296,11 +243,6 @@ clipboard@^2.0.4:
     good-listener "^1.2.2"
     select "^1.1.2"
     tiny-emitter "^2.0.0"
-
-commander@~2.8.1:
-  version "2.8.1"
-  dependencies:
-    graceful-readlink ">= 1.0.0"
 
 convert-source-map@^2.0.0:
   version "2.0.0"
@@ -325,21 +267,6 @@ delegate@^3.1.2:
 
 electron-to-chromium@^1.5.263:
   version "1.5.286"
-
-"elliptic@github:openpgpjs/elliptic#ad81845":
-  version "6.4.0"
-  resolved "git+ssh://git@github.com/openpgpjs/elliptic.git#ad81845f693effa5b4b6d07db2e82112de222f48"
-  dependencies:
-    bn.js "^4.4.0"
-    brorand "^1.0.1"
-    hash.js "^1.0.0"
-    hmac-drbg "^1.0.0"
-    inherits "^2.0.1"
-    minimalistic-assert "^1.0.0"
-    minimalistic-crypto-utils "^1.0.0"
-
-email-addresses@^3.0.0:
-  version "3.0.3"
 
 esbuild@^0.21.3:
   version "0.21.5"
@@ -382,34 +309,6 @@ good-listener@^1.2.2:
   dependencies:
     delegate "^3.1.2"
 
-graceful-fs@^4.1.11:
-  version "4.1.15"
-
-"graceful-readlink@>= 1.0.0":
-  version "1.0.1"
-
-hash.js@^1.0.0, hash.js@^1.0.3, hash.js@^1.1.3:
-  version "1.1.7"
-  dependencies:
-    inherits "^2.0.3"
-    minimalistic-assert "^1.0.1"
-
-hmac-drbg@^1.0.0:
-  version "1.0.1"
-  dependencies:
-    hash.js "^1.0.3"
-    minimalistic-assert "^1.0.0"
-    minimalistic-crypto-utils "^1.0.1"
-
-ieee754@^1.1.4:
-  version "1.1.12"
-
-imurmurhash@^0.1.4:
-  version "0.1.4"
-
-inherits@^2.0.1, inherits@^2.0.3:
-  version "2.0.3"
-
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
 
@@ -429,12 +328,6 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
-  version "1.0.1"
-
-minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
-  version "1.0.1"
-
 ms@^2.1.1:
   version "2.1.1"
 
@@ -444,36 +337,13 @@ ms@^2.1.3:
 nanoid@^3.3.11:
   version "3.3.11"
 
-node-fetch@^2.1.2:
-  version "2.6.1"
-
-node-localstorage@~1.3.0:
-  version "1.3.1"
-  dependencies:
-    write-file-atomic "^1.1.4"
-
 node-releases@^2.0.27:
   version "2.0.27"
 
-openpgp@^4.4.3:
-  version "4.4.7"
-  dependencies:
-    "@mattiasbuelens/web-streams-polyfill" "0.1.0-alpha.4"
-    address-rfc2822 "^2.0.3"
-    asmcrypto.js "github:openpgpjs/asmcrypto#6e4e407"
-    asn1.js "^5.0.0"
-    bn.js "^4.11.8"
-    buffer "^5.0.8"
-    elliptic "github:openpgpjs/elliptic#ad81845"
-    hash.js "^1.1.3"
-    node-fetch "^2.1.2"
-    node-localstorage "~1.3.0"
-    pako "^1.0.6"
-    seek-bzip "github:openpgpjs/seek-bzip#3aca608"
-    web-stream-tools "github:openpgpjs/web-stream-tools#84a4977"
-
-pako@^1.0.6:
-  version "1.0.8"
+openpgp@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/openpgp/-/openpgp-6.3.0.tgz"
+  integrity sha512-pLzCU8IgyKXPSO11eeharQkQ4GzOKNWhXq79pQarIRZEMt1/ssyr+MIuWBv1mNoenJLg04gvPx+fi4gcKZ4bag==
 
 picocolors@^1.1.1:
   version "1.1.1"
@@ -556,20 +426,11 @@ scheduler@^0.23.2:
   dependencies:
     loose-envify "^1.1.0"
 
-"seek-bzip@github:openpgpjs/seek-bzip#3aca608":
-  version "1.0.5-git"
-  resolved "git+ssh://git@github.com/openpgpjs/seek-bzip.git#3aca608ffedc055a1da1d898ecb244804ef32209"
-  dependencies:
-    commander "~2.8.1"
-
 select@^1.1.2:
   version "1.1.2"
 
 semver@^6.3.1:
   version "6.3.1"
-
-slide@^1.1.5:
-  version "1.1.6"
 
 source-map-js@^1.2.1:
   version "1.2.1"
@@ -604,17 +465,6 @@ update-browserslist-db@^1.2.0:
     rollup "^4.20.0"
   optionalDependencies:
     fsevents "~2.3.3"
-
-"web-stream-tools@github:openpgpjs/web-stream-tools#84a4977":
-  version "0.0.1"
-  resolved "git+ssh://git@github.com/openpgpjs/web-stream-tools.git#84a497715c9df271a673f8616318264ab42ab3cc"
-
-write-file-atomic@^1.1.4:
-  version "1.3.4"
-  dependencies:
-    graceful-fs "^4.1.11"
-    imurmurhash "^0.1.4"
-    slide "^1.1.5"
 
 yallist@^3.0.2:
   version "3.0.3"

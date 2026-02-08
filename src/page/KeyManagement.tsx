@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import openpgp, { key } from "openpgp";
+import * as openpgp from "openpgp";
 import useStore from "../store";
 import CopyableTextarea from "../components/CopyableTextarea";
 
@@ -43,15 +43,21 @@ const KeyManagement: React.FC = () => {
 
     async function keyGenerate() {
         var options = {
-            userIds: [{ name, email }], // multiple user IDs
-            curve: "p256" as const,           // ECC curve name
+            type: 'ecc',
+            curve: 'p256',
+            userIDs: [{ name, email }], // multiple user IDs
             passphrase       // protects the private key
         };
-        // @ts-ignore - openpgp types might need adjustment
-        const { privateKeyArmored } = await openpgp.generateKey(options)
-        // @ts-ignore - openpgp types
-        const newPrivateKey = (await key.readArmored(privateKeyArmored)).keys[0]
-        setPrivateKey(newPrivateKey)
+        
+        try {
+            // @ts-ignore
+            const keyPair = await openpgp.generateKey(options);
+            // keyPair.privateKey is a string (armored) by default
+            const newPrivateKey = await openpgp.readPrivateKey({ armoredKey: keyPair.privateKey });
+            setPrivateKey(newPrivateKey);
+        } catch (err) {
+            console.error("Key generation failed", err);
+        }
     }
 
     return (
