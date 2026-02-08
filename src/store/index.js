@@ -1,13 +1,18 @@
-import { createConnectedStore } from 'undux'
-import effects from './effects'
+import { create } from 'zustand';
 
-// Declare your store's initial state.
-const initialState = {
+const useStore = create((set, get) => ({
     publicKey: null,
-    privateKey: null
-}
+    privateKey: null,
+    setPrivateKey: (privateKey) => {
+        // Effect: Persist to localStorage
+        localStorage.setItem('privateKeyArmored', privateKey.armor());
+        
+        // Effect: Derive public key
+        const publicKey = privateKey.toPublic();
+        
+        set({ privateKey, publicKey });
+    },
+    setPublicKey: (publicKey) => set({ publicKey })
+}));
 
-// Create & export a store with an initial value.
-const Store = createConnectedStore(initialState, effects)
-export const { withStore, Container } = Store
-export default Store
+export default useStore;

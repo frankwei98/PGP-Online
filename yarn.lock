@@ -466,7 +466,7 @@ react-router@6.30.3:
   dependencies:
     "@remix-run/router" "1.23.2"
 
-react@^18.2.0, react@^18.3.1, react@>=16.0.0, react@>=16.8:
+react@^18.2.0, react@^18.3.1, react@>=16.8, react@>=18.0.0:
   version "18.3.1"
   dependencies:
     loose-envify "^1.1.0"
@@ -503,7 +503,7 @@ rollup@^4.20.0:
     "@rollup/rollup-win32-x64-msvc" "4.57.1"
     fsevents "~2.3.2"
 
-rxjs@^6.3.3, rxjs@>=5.0.0:
+rxjs@^6.3.3:
   version "6.4.0"
   dependencies:
     tslib "^1.9.0"
@@ -537,14 +537,6 @@ tiny-emitter@^2.0.0:
 tslib@^1.9.0:
   version "1.9.3"
 
-typed-rx-emitter@1.2.0:
-  version "1.2.0"
-
-undux@^5.0.0-beta.19:
-  version "5.0.0-beta.19"
-  dependencies:
-    typed-rx-emitter "1.2.0"
-
 update-browserslist-db@^1.2.0:
   version "1.2.3"
   dependencies:
@@ -573,3 +565,8 @@ write-file-atomic@^1.1.4:
 
 yallist@^3.0.2:
   version "3.0.3"
+
+zustand@^5.0.11:
+  version "5.0.11"
+  resolved "https://registry.npmjs.org/zustand/-/zustand-5.0.11.tgz"
+  integrity sha512-fdZY+dk7zn/vbWNCYmzZULHRrss0jx5pPFiOuMZ/5HJN6Yv3u+1Wswy/4MpZEkEGhtNH+pwxZB8OKgUBPzYAGg==

@@ -9,7 +9,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.3",
     "rxjs": "^6.3.3",
-    "undux": "^5.0.0-beta.19"
+    "zustand": "^5.0.11"
   },
   "scripts": {
     "dev": "vite",
