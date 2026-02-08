@@ -4,10 +4,9 @@ import { AboutUs, KeyManagement, Encrypt, Decrypt } from "./page";
 import Loading from "./page/Loading";
 import { key } from "openpgp";
 import useStore from "./store";
-// import KeyManagement from "./components/keygen";
 import './App.css';
 
-const Home = () => {
+const Home: React.FC = () => {
   const privateKey = useStore((state) => state.privateKey);
   
   return (
@@ -23,14 +22,16 @@ const Home = () => {
   )
 }
 
-const App = () => {
+const App: React.FC = () => {
   const setPrivateKey = useStore((state) => state.setPrivateKey);
 
   useEffect(() => {
     const initKey = async () => {
       const privateKeyArmored = localStorage.getItem('privateKeyArmored')
       if (privateKeyArmored) {
+        // @ts-ignore - openpgp types might need adjustment
         const privateKey = await key.readArmored(privateKeyArmored)
+        // @ts-ignore - privateKey.keys[0] should match our PGPKey interface
         setPrivateKey(privateKey.keys[0])
       }
     };

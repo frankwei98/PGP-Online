@@ -3,14 +3,14 @@ import openpgp, { key } from "openpgp";
 import useStore from "../store";
 import CopyableTextarea from "../components/CopyableTextarea";
 
-function MyKeyPair() {
+const MyKeyPair: React.FC = () => {
     const privateKey = useStore((state) => state.privateKey);
     const publicKey = useStore((state) => state.publicKey);
     
     const isKeyExist = !!privateKey;
 
     if (!isKeyExist) {
-        return false // Not rendering if key pair is not exist
+        return null; // TS prefers null over false for component return
     }
     return <div className="mykey columns">
         <div className="control column">
@@ -26,14 +26,14 @@ function MyKeyPair() {
     </div>
 }
 
-function KeyManagement(props) {
+const KeyManagement: React.FC = () => {
     const privateKey = useStore((state) => state.privateKey);
     const setPrivateKey = useStore((state) => state.setPrivateKey);
     
-    const [isKeyExist, setIsKeyExist] = useState(false)
-    const [name, setName] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [passphrase, setPassphrase] = useState(null)
+    const [isKeyExist, setIsKeyExist] = useState<boolean>(false)
+    const [name, setName] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [passphrase, setPassphrase] = useState<string>('')
 
     useEffect(() => {
         const keyExists = !!privateKey;
@@ -44,10 +44,12 @@ function KeyManagement(props) {
     async function keyGenerate() {
         var options = {
             userIds: [{ name, email }], // multiple user IDs
-            curve: "p256",           // ECC curve name
+            curve: "p256" as const,           // ECC curve name
             passphrase       // protects the private key
         };
+        // @ts-ignore - openpgp types might need adjustment
         const { privateKeyArmored } = await openpgp.generateKey(options)
+        // @ts-ignore - openpgp types
         const newPrivateKey = (await key.readArmored(privateKeyArmored)).keys[0]
         setPrivateKey(newPrivateKey)
     }
@@ -59,7 +61,7 @@ function KeyManagement(props) {
                 你已经生成了密钥对，需要更换密钥吗？
                 </div>)
                 : (<div className="notification is-info key-not-exist">
-                    你还没有密钥对，填写下方信息即可生成（仅供验证密文用，无需真实信息）
+                  你还没有密钥对，填写下方信息即可生成（仅供验证密文用，无需真实信息）
                 </div>)
             }
             <form>

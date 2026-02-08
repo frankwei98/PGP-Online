@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component, ChangeEvent } from "react";
 import { encrypt } from "../crypto";
 
 const toPublicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -19,17 +19,23 @@ Em8QcBab/u5EZQQkdMhWLOMCGA==
 -----END PGP PUBLIC KEY BLOCK-----
 `
 
-class Encryption extends Component {
-    state = {
+interface EncryptionState {
+    message: string;
+    toPublicKey: string;
+    encryptedMessage: string;
+}
+
+class Encryption extends Component<{}, EncryptionState> {
+    state: EncryptionState = {
         message: '',
         toPublicKey,
         encryptedMessage: ''
     }
-    inputMessage(e) {
+    inputMessage(e: ChangeEvent<HTMLTextAreaElement>) {
         let message = e.target.value
         this.setState({ message })
     }
-    inputPublicKey(e) {
+    inputPublicKey(e: ChangeEvent<HTMLTextAreaElement>) {
         let toPublicKey = e.target.value
         this.setState({ toPublicKey })
     }
@@ -69,4 +75,3 @@ class Encryption extends Component {
 
 
 export default Encryption
-

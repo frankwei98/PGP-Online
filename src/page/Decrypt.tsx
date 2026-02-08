@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { decrypt } from "../crypto";
 import useStore from "../store";
 
-const Decryption = () => {
-    const [encryptedMessage, setEncryptedMessage] = useState('');
-    const [privateKeyToUnlock, setPrivateKeyToUnlock] = useState('');
-    const [privateKeyUnlockPassphrase, setPrivateKeyUnlockPassphrase] = useState('');
-    const [decryptedMessage, setDecryptedMessage] = useState('');
+const Decryption: React.FC = () => {
+    const [encryptedMessage, setEncryptedMessage] = useState<string>('');
+    const [privateKeyToUnlock, setPrivateKeyToUnlock] = useState<string>('');
+    const [privateKeyUnlockPassphrase, setPrivateKeyUnlockPassphrase] = useState<string>('');
+    const [decryptedMessage, setDecryptedMessage] = useState<string>('');
     
     const privateKey = useStore((state) => state.privateKey);
 
