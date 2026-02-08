@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@loadable/component": "^5.2.2",
     "clipboard": "^2.0.4",
     "openpgp": "^4.4.3",
     "react": "^18.2.0",

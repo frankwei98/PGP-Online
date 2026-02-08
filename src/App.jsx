@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { AboutUs, KeyManagement, Encrypt, Decrypt } from "./page";
+import Loading from "./page/Loading";
 import { key } from "openpgp";
 import { withStore } from "./store";
 // import KeyManagement from "./components/keygen";
@@ -47,13 +48,15 @@ class App extends Component {
               </div>
             </nav>
           </header>
-          <Routes>
-            <Route path="/" element={<Home store={this.props.store} />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/encrypt" element={<Encrypt />} />
-            <Route path="/decrypt" element={<Decrypt />} />
-            <Route path="/key" element={<KeyManagement />} />
-          </Routes>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/" element={<Home store={this.props.store} />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/encrypt" element={<Encrypt />} />
+              <Route path="/decrypt" element={<Decrypt />} />
+              <Route path="/key" element={<KeyManagement />} />
+            </Routes>
+          </Suspense>
         </div>
       </Router>
     );

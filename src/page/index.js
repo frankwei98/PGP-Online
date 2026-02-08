@@ -1,12 +1,14 @@
-/**
- * This file is for `@loadable/component` ONLY!
- */
+import { lazy } from "react";
 
-import loadable from '@loadable/component'
+const AboutUs = lazy(() => import(/* webpackChunkName: "about" */ "./About"));
+const KeyManagement = lazy(
+  () => import(/* webpackChunkName: "keygen" */ "./KeyManagement"),
+);
+const Encrypt = lazy(
+  () => import(/* webpackChunkName: "encrypt" */ "./encrypt"),
+);
+const Decrypt = lazy(
+  () => import(/* webpackChunkName: "decrypt" */ "./decrypt"),
+);
 
-const AboutUs = loadable(() => import(/* webpackChunkName: "about" */'./About'))
-const KeyManagement = loadable(() => import(/* webpackChunkName: "keygen" */'./KeyManagement'))
-const Encrypt = loadable(() => import(/* webpackChunkName: "encrypt" */'./encrypt'))
-const Decrypt = loadable(() => import(/* webpackChunkName: "decrypt" */'./decrypt'))
-
-export { Encrypt, Decrypt, AboutUs, KeyManagement }
+export { Encrypt, Decrypt, AboutUs, KeyManagement };
