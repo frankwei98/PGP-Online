@@ -1,10 +1,10 @@
-import * as openpgp from "openpgp";
+import { readKey, createMessage, encrypt as openpgpEncrypt } from "../openpgp-wrapper";
 
 async function encrypt(pubkey: string, text: string) {
-  const encryptionKeys = await openpgp.readKey({ armoredKey: pubkey });
-  const message = await openpgp.createMessage({ text });
+  const encryptionKeys = await readKey({ armoredKey: pubkey });
+  const message = await createMessage({ text });
 
-  const encrypted = await openpgp.encrypt({
+  const encrypted = await openpgpEncrypt({
     message,
     encryptionKeys,
   });
