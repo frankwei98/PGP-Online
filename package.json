@@ -2,6 +2,7 @@
   "name": "gpg-online",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "clipboard": "^2.0.4",
     "openpgp": "^6.3.0",
